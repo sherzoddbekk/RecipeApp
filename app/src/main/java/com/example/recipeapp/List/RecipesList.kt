@@ -6,9 +6,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -62,18 +62,30 @@ fun OffersList(
             }
         }
 
-        Button(
+//        Button(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .fillMaxWidth()
+//                .height(220.dp)
+//                .align(Alignment.BottomCenter)
+//                .padding(vertical = 80.dp, horizontal = 16.dp),
+//            onClick = { context.startActivity(Intent(context, AddNewActivity::class.java)) }) {
+//            Text(
+//                text = stringResource(id = R.string.list_add_new_text),
+//                color = Color.White,
+//                fontSize = 18.sp
+//            )
+//        }
+        FloatingActionButton(
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxWidth()
-                .height(220.dp)
-                .align(Alignment.BottomCenter)
+                .align(Alignment.BottomEnd)
                 .padding(vertical = 80.dp, horizontal = 16.dp),
-            onClick = { context.startActivity(Intent(context, AddNewActivity::class.java)) }) {
-            Text(
-                text = stringResource(id = R.string.list_add_new_text),
-                color = Color.White,
-                fontSize = 18.sp
+            onClick = {
+                context.startActivity(Intent(context, AddNewActivity::class.java))
+            }) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = stringResource(id = R.string.list_add_new_text)
             )
         }
     }
