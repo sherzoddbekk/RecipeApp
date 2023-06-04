@@ -35,7 +35,7 @@ fun DetailedView(offerId: String,
                 .padding(horizontal = 16.dp)
         ) {
             Image(
-                painter = rememberAsyncImagePainter("https://picsum.photos/400/200"),
+                painter = rememberAsyncImagePainter("https://images.pexels.com/photos/6248902/pexels-photo-6248902.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
                 contentDescription = null,
                 modifier = Modifier.size(400.dp)
             )

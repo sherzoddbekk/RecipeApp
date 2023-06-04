@@ -10,7 +10,7 @@ import com.example.recipeapp.Network.Offer.OfferRequest
 import com.example.recipeapp.Network.Offer.OfferResponse
 import com.example.recipeapp.Network.RetrofitInstance
 import com.example.recipeapp.Offer.Offer
-import com.example.workandtravelapp.Utils.Constants
+import com.example.recipeapp.Utils.Constants
 import kotlinx.coroutines.launch
 import java.lang.Exception
 

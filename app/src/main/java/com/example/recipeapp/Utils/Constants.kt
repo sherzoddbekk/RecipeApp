@@ -1,5 +1,5 @@
-package com.example.workandtravelapp.Utils
+package com.example.recipeapp.Utils
 
 object Constants {
-    const val STUDENT_ID = "00010983"
+    const val STUDENT_ID = "00010196"
 }
