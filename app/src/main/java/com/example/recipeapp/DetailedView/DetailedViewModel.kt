@@ -10,7 +10,7 @@ import com.example.recipeapp.Network.Offer.OfferRequest
 import com.example.recipeapp.Network.Offer.OfferResponse
 import com.example.recipeapp.Network.RetrofitInstance
 import com.example.recipeapp.Offer.Offer
-import com.example.workandtravelapp.Utils.Constants
+import com.example.recipeapp.Utils.Constants
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -19,6 +19,17 @@ class DetailedViewModel(offerId: String) : ViewModel() {
     val offerLiveData: MutableLiveData<Offer> by lazy {
         MutableLiveData<Offer>()
     }
+
+    val recipeData: MutableLiveData<MyResponse> by lazy {
+        MutableLiveData<MyResponse>()
+    }
+
+    val editRecipeData: MutableLiveData<MyResponse> by lazy {
+        MutableLiveData<MyResponse>()
+    }
+
+
+
 
     init {
         getOfferByIdFromRemoteDb(offerId)
@@ -56,6 +67,14 @@ class DetailedViewModel(offerId: String) : ViewModel() {
                     offerRequest
                 )
 
+                if (response != null){
+                    editRecipeData.value = MyResponse(
+                        code = response.code,
+                        status = response.status,
+                        message = response.message
+                    )
+                }
+
                 Log.d("Update_response", response.toString())
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -72,6 +91,14 @@ class DetailedViewModel(offerId: String) : ViewModel() {
                     offerId,
                     Constants.STUDENT_ID
                 )
+
+                if (response != null) {
+                    recipeData.value = MyResponse(
+                        response.code,
+                        response.status,
+                        response.message
+                    )
+                }
 
                 Log.d("Delete_response", response.toString())
             } catch (e: Exception) {

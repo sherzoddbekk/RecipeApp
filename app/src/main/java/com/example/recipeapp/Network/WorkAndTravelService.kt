@@ -1,4 +1,4 @@
-package com.example.workandtravelapp.Network
+package com.example.recipeapp.Network
 
 import com.example.recipeapp.Network.MyResponse.MyItemResponse
 import com.example.recipeapp.Network.MyResponse.MyListResponse

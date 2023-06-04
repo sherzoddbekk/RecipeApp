@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.recipeapp.Network.MyResponse.MyResponse
 import com.example.recipeapp.Network.Offer.OfferRequest
 import com.example.recipeapp.Network.RetrofitInstance
-import com.example.workandtravelapp.Utils.Constants
+import com.example.recipeapp.Utils.Constants
 import kotlinx.coroutines.launch
 
 class AddNewViewModel : ViewModel() {

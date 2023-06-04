@@ -2,11 +2,13 @@ package com.example.recipeapp.Network.MyResponse
 
 import com.google.gson.annotations.SerializedName
 
-open class MyResponse () {
+open class MyResponse (
     @SerializedName("code")
-    val code: String = ""
+    val code: Int = 0,
     @SerializedName("status")
-    val status: String = ""
+    val status: String = "",
     @SerializedName("message")
     val message: String = ""
+) {
+
 }

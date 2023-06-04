@@ -1,5 +1,8 @@
 package com.example.recipeapp.DetailedView
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
@@ -16,17 +19,33 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.recipeapp.MainActivity
+import com.example.recipeapp.Network.MyResponse.MyResponse
+import com.example.recipeapp.Offer.Offer
 import com.example.recipeapp.R
+import com.example.recipeapp.edit.EditActivity
 
 @Composable
 fun DetailedView(offerId: String,
                  viewModel: DetailedViewModel = DetailedViewModel(offerId)
 ) {
 
+    val context = LocalContext.current
     val offer by viewModel.offerLiveData.observeAsState()
+    val recipe by viewModel.recipeData.observeAsState()
+
+    val navController = rememberNavController()
+    val isProgressVisible = remember { mutableStateOf(false) }
 
     if (offer != null) {
         Column(
@@ -35,7 +54,7 @@ fun DetailedView(offerId: String,
                 .padding(horizontal = 16.dp)
         ) {
             Image(
-                painter = rememberAsyncImagePainter("https://picsum.photos/400/200"),
+                painter = rememberAsyncImagePainter("https://images.pexels.com/photos/6248902/pexels-photo-6248902.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
                 contentDescription = null,
                 modifier = Modifier.size(400.dp)
             )
@@ -43,9 +62,20 @@ fun DetailedView(offerId: String,
             Description(description = "Description: " + offer!!.description)
             MyDivider()
             Spacer(Modifier.height(16.dp))
-            DetailedViewBtns()
+            DetailedViewBtns(viewModel, offer!!, navController, isProgressVisible, context)
         }
     }
+
+    recipe?.let {ProgressWidget(
+            response = it,
+            isVisible = isProgressVisible.value,
+            context
+        )
+    }
+
+//    if (recipe!!.code == 200){
+//        navController.navigateUp()
+//    }
 }
 
 @Composable
@@ -78,26 +108,62 @@ private fun MyDivider() {
 }
 
 @Composable
-private fun DetailedViewBtns(){
+private fun DetailedViewBtns(viewModel: DetailedViewModel, offer: Offer, navController: NavController, isProgressVisible: MutableState<Boolean>, context: Context){
     Row(modifier = Modifier
         .fillMaxWidth()
         .height(100.dp)
         .width(400.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom){
-        Button(onClick = { }) {
+        Button(onClick = {
+            navController.navigateUp()
+            viewModel.deleteOneOfferById(offer.id.toString())
+            isProgressVisible.value = true
+        }) {
             Text(
                 text = stringResource(id = R.string.deleteDetailedViwe),
                 color = Color.White,
                 fontSize = 18.sp
             )
         }
-        Button(onClick = { }) {
+        Button(onClick = {
+            val intent = Intent(context, EditActivity::class.java)
+            intent.putExtra("id", offer.id.toString())
+            intent.putExtra("title", offer.name)
+            intent.putExtra("description", offer.description)
+            context.startActivity(intent)
+        }) {
             Text(
                 text = stringResource(id = R.string.editDetailedViwe),
                 color = Color.White,
                 fontSize = 18.sp
             )
         }
+    }
+}
+
+@Composable
+private fun ProgressWidget(response: MyResponse, isVisible: Boolean, context: Context) {
+    if (isVisible) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Transparent)
+        ) {
+            Text(
+                modifier = Modifier
+                    .background(Color.Gray)
+                    .padding(20.dp)
+                    .align(Alignment.Center),
+                fontSize = 25.sp,
+                text =
+                if (response.status.isEmpty()) stringResource(id = R.string.add_new_in_progress_mgs)
+                else if (response.status == "OK")  stringResource(id = R.string.deleted_successfully_msg)
+                else stringResource(id = R.string.failed_to_delete_msg)
+            )
+        }
+
+        (LocalContext.current as Activity).onBackPressed()
+//        context.startActivity(Intent(context, MainActivity::class.java))
     }
 }
