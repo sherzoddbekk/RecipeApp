@@ -40,7 +40,7 @@ fun AddNewView(viewModel: AddNewViewModel = AddNewViewModel()) {
 
     val isProgressVisible = remember { mutableStateOf(false) }
 
-    val response by viewModel.offerInsertResponse.observeAsState()
+    val response by viewModel.recipeInsertResponse.observeAsState()
 
     Column(
         modifier = Modifier
@@ -62,7 +62,7 @@ fun AddNewView(viewModel: AddNewViewModel = AddNewViewModel()) {
         val validationMsg = stringResource(id = R.string.validationMsg)
         AddNewButton {
             if (isInputValid(name.value, description.value)) {
-                viewModel.saveNewOfferToRemoteDb(
+                viewModel.saveNewRecipeToRemoteDb(
                     RecipeRequest(
                         name.value,
                         description.value

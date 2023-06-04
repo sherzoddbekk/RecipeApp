@@ -39,7 +39,7 @@ fun DetailedView(offerId: String,
 ) {
 
     val context = LocalContext.current
-    val offer by viewModel.offerLiveData.observeAsState()
+    val offer by viewModel.recipeLiveData.observeAsState()
     val recipe by viewModel.recipeData.observeAsState()
 
     val navController = rememberNavController()
@@ -115,7 +115,7 @@ private fun DetailedViewBtns(viewModel: DetailedViewModel, offer: Recipe, navCon
         verticalAlignment = Alignment.Bottom){
         Button(onClick = {
             navController.navigateUp()
-            viewModel.deleteOneOfferById(offer.id.toString())
+            viewModel.deleteOneRecipeById(offer.id.toString())
             isProgressVisible.value = true
         }) {
             Text(

@@ -16,7 +16,7 @@ import java.lang.Exception
 
 class DetailedViewModel(offerId: String) : ViewModel() {
 
-    val offerLiveData: MutableLiveData<Recipe> by lazy {
+    val recipeLiveData: MutableLiveData<Recipe> by lazy {
         MutableLiveData<Recipe>()
     }
 
@@ -39,11 +39,11 @@ class DetailedViewModel(offerId: String) : ViewModel() {
         viewModelScope.launch {
             try {
                 val response: MyItemResponse<RecipeResponse> =
-                    RetrofitInstance.offerService.getOneOfferById(offerId, Constants.STUDENT_ID)
+                    RetrofitInstance.offerService.getOneRecipeById(offerId, Constants.STUDENT_ID)
                 val offerFromResponse = response.data
 
                 if (offerFromResponse != null) {
-                    offerLiveData.value = Recipe(
+                    recipeLiveData.value = Recipe(
                         offerFromResponse.id,
                         offerFromResponse.name,
                         offerFromResponse.description
@@ -61,7 +61,7 @@ class DetailedViewModel(offerId: String) : ViewModel() {
         viewModelScope.launch {
             try {
 
-                val response: MyResponse = RetrofitInstance.offerService.updateOneOfferById(
+                val response: MyResponse = RetrofitInstance.offerService.updateOneRecipeById(
                     offerId,
                     Constants.STUDENT_ID,
                     offerRequest
@@ -83,11 +83,11 @@ class DetailedViewModel(offerId: String) : ViewModel() {
     }
 
 
-    fun deleteOneOfferById(offerId: String) {
+    fun deleteOneRecipeById(offerId: String) {
         viewModelScope.launch {
             try {
 
-                val response: MyResponse = RetrofitInstance.offerService.deleteOneOfferById(
+                val response: MyResponse = RetrofitInstance.offerService.deleteOneRecipeById(
                     offerId,
                     Constants.STUDENT_ID
                 )

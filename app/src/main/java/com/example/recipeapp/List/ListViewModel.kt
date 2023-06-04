@@ -13,15 +13,15 @@ import java.lang.Exception
 
 class ListViewModel : ViewModel() {
 
-    val offersLiveData: MutableLiveData<List<Recipe>> by lazy {
+    val recipeLiveData: MutableLiveData<List<Recipe>> by lazy {
         MutableLiveData<List<Recipe>>()
     }
 
     init {
-        getListOfOffersFromRemoteDb()
+        getListOfRecipeFromRemoteDb()
     }
 
-    fun getListOfOffersFromRemoteDb() {
+    fun getListOfRecipeFromRemoteDb() {
         viewModelScope.launch {
             try {
                 val response: MyListResponse<RecipeResponse> =
@@ -40,7 +40,7 @@ class ListViewModel : ViewModel() {
                             )
                         )
                     }
-                    offersLiveData.value = myOffers
+                    recipeLiveData.value = myOffers
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

@@ -11,21 +11,21 @@ import com.example.recipeapp.Utils.Constants
 import kotlinx.coroutines.launch
 
 class AddNewViewModel : ViewModel() {
-    val offerInsertResponse: MutableLiveData<MyResponse> by lazy {
+    val recipeInsertResponse: MutableLiveData<MyResponse> by lazy {
         MutableLiveData<MyResponse>()
     }
 
-    fun saveNewOfferToRemoteDb(offer: RecipeRequest) {
+    fun saveNewRecipeToRemoteDb(offer: RecipeRequest) {
 
         viewModelScope.launch {
             try {
 
-                val response: MyResponse = RetrofitInstance.offerService.insertNewOffer(
+                val response: MyResponse = RetrofitInstance.offerService.insertNewRecipe(
                     Constants.STUDENT_ID,
                     offer
                 )
 
-                offerInsertResponse.value = response
+                recipeInsertResponse.value = response
 
                 Log.d("Update_response", response.toString())
             } catch (e: Exception) {
