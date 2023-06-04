@@ -1,8 +1,8 @@
-package com.example.recipeapp.Network.Offer
+package com.example.recipeapp.Network.Recipe
 
 import com.google.gson.annotations.SerializedName
 
-data class OfferResponse (
+data class RecipeResponse (
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")

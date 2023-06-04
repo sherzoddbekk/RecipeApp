@@ -89,7 +89,6 @@ class MainActivity : ComponentActivity() {
                                         route = Screen.Settings.route,
                                         icon = Icons.Default.Settings
                                     )
-
                                 ),
                                 navController = navController,
                                 onItemClick = {

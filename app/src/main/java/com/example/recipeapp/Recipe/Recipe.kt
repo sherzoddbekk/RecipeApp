@@ -1,6 +1,6 @@
-package com.example.recipeapp.Offer
+package com.example.recipeapp.Recipe
 
-data class Offer(
+data class Recipe(
     val id: Int,
     val name: String,
     val description: String

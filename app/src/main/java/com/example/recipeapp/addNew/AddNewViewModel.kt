@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipeapp.Network.MyResponse.MyResponse
-import com.example.recipeapp.Network.Offer.OfferRequest
+import com.example.recipeapp.Network.Recipe.RecipeRequest
 import com.example.recipeapp.Network.RetrofitInstance
 import com.example.recipeapp.Utils.Constants
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ class AddNewViewModel : ViewModel() {
         MutableLiveData<MyResponse>()
     }
 
-    fun saveNewOfferToRemoteDb(offer: OfferRequest) {
+    fun saveNewOfferToRemoteDb(offer: RecipeRequest) {
 
         viewModelScope.launch {
             try {

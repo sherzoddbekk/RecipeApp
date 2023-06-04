@@ -4,17 +4,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipeapp.Network.MyResponse.MyListResponse
-import com.example.recipeapp.Network.Offer.OfferResponse
+import com.example.recipeapp.Network.Recipe.RecipeResponse
 import com.example.recipeapp.Network.RetrofitInstance
-import com.example.recipeapp.Offer.Offer
+import com.example.recipeapp.Recipe.Recipe
 import com.example.recipeapp.Utils.Constants
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ListViewModel : ViewModel() {
 
-    val offersLiveData: MutableLiveData<List<Offer>> by lazy {
-        MutableLiveData<List<Offer>>()
+    val offersLiveData: MutableLiveData<List<Recipe>> by lazy {
+        MutableLiveData<List<Recipe>>()
     }
 
     init {
@@ -24,16 +24,16 @@ class ListViewModel : ViewModel() {
     fun getListOfOffersFromRemoteDb() {
         viewModelScope.launch {
             try {
-                val response: MyListResponse<OfferResponse> =
+                val response: MyListResponse<RecipeResponse> =
                     RetrofitInstance.offerService.getAllOffers(Constants.STUDENT_ID)
                 val offersFromResponse = response.data
 
                 if (offersFromResponse != null) {
-                    val myOffers = mutableListOf<Offer>()
+                    val myOffers = mutableListOf<Recipe>()
 
                     for (offerFromResponse in offersFromResponse) {
                         myOffers.add(
-                            Offer(
+                            Recipe(
                                 offerFromResponse.id,
                                 "Title: " + offerFromResponse.name,
                                 "Description: " + offerFromResponse.description

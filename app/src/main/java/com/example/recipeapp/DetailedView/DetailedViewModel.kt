@@ -6,18 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipeapp.Network.MyResponse.MyItemResponse
 import com.example.recipeapp.Network.MyResponse.MyResponse
-import com.example.recipeapp.Network.Offer.OfferRequest
-import com.example.recipeapp.Network.Offer.OfferResponse
+import com.example.recipeapp.Network.Recipe.RecipeRequest
+import com.example.recipeapp.Network.Recipe.RecipeResponse
 import com.example.recipeapp.Network.RetrofitInstance
-import com.example.recipeapp.Offer.Offer
+import com.example.recipeapp.Recipe.Recipe
 import com.example.recipeapp.Utils.Constants
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class DetailedViewModel(offerId: String) : ViewModel() {
 
-    val offerLiveData: MutableLiveData<Offer> by lazy {
-        MutableLiveData<Offer>()
+    val offerLiveData: MutableLiveData<Recipe> by lazy {
+        MutableLiveData<Recipe>()
     }
 
     val recipeData: MutableLiveData<MyResponse> by lazy {
@@ -38,12 +38,12 @@ class DetailedViewModel(offerId: String) : ViewModel() {
     private fun getOfferByIdFromRemoteDb(offerId: String) {
         viewModelScope.launch {
             try {
-                val response: MyItemResponse<OfferResponse> =
+                val response: MyItemResponse<RecipeResponse> =
                     RetrofitInstance.offerService.getOneOfferById(offerId, Constants.STUDENT_ID)
                 val offerFromResponse = response.data
 
                 if (offerFromResponse != null) {
-                    offerLiveData.value = Offer(
+                    offerLiveData.value = Recipe(
                         offerFromResponse.id,
                         offerFromResponse.name,
                         offerFromResponse.description
@@ -57,7 +57,7 @@ class DetailedViewModel(offerId: String) : ViewModel() {
         }
     }
 
-    fun editOfferById(offerId: String, offerRequest: OfferRequest) {
+    fun editOfferById(offerId: String, offerRequest: RecipeRequest) {
         viewModelScope.launch {
             try {
 

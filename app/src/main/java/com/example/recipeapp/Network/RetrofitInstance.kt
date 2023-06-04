@@ -28,8 +28,8 @@ class RetrofitInstance {
                 .build()
         }
 
-        val offerService: WorkAndTravelService = getRetrofitInstance()
-            .create(WorkAndTravelService::class.java)
+        val offerService: RecipeApiService = getRetrofitInstance()
+            .create(RecipeApiService::class.java)
 
     }
 }

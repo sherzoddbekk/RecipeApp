@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.example.recipeapp.MainActivity
 import com.example.recipeapp.R
 import com.example.recipeapp.Network.MyResponse.MyResponse
-import com.example.recipeapp.Network.Offer.OfferRequest
+import com.example.recipeapp.Network.Recipe.RecipeRequest
 
 
 @Composable
@@ -63,7 +63,7 @@ fun AddNewView(viewModel: AddNewViewModel = AddNewViewModel()) {
         AddNewButton {
             if (isInputValid(name.value, description.value)) {
                 viewModel.saveNewOfferToRemoteDb(
-                    OfferRequest(
+                    RecipeRequest(
                         name.value,
                         description.value
                     )

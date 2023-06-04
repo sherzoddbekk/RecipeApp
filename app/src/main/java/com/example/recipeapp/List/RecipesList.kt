@@ -24,7 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.recipeapp.R
-import com.example.recipeapp.Offer.Offer
+import com.example.recipeapp.Recipe.Recipe
 import com.example.recipeapp.addNew.AddNewActivity
 
 @Composable
@@ -92,7 +92,7 @@ fun OffersList(
 }
 
 @Composable
-fun OfferItem(offer: Offer, onOfferClick: (String) -> Unit) {
+fun OfferItem(offer: Recipe, onOfferClick: (String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

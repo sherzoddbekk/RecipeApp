@@ -30,7 +30,7 @@ import com.example.recipeapp.DetailedView.DetailedViewModel
 import com.example.recipeapp.MainActivity
 import com.example.recipeapp.R
 import com.example.recipeapp.Network.MyResponse.MyResponse
-import com.example.recipeapp.Network.Offer.OfferRequest
+import com.example.recipeapp.Network.Recipe.RecipeRequest
 
 
 @Composable
@@ -67,7 +67,7 @@ fun EditView(offerId: String, title: String, description: String,
         AddNewButton {
             if (isInputValid(name.value, description.value)) {
                 viewModel.editOfferById(offerId,
-                    OfferRequest(
+                    RecipeRequest(
                         name.value,
                         description.value
                     )

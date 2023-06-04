@@ -25,13 +25,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.recipeapp.MainActivity
 import com.example.recipeapp.Network.MyResponse.MyResponse
-import com.example.recipeapp.Offer.Offer
+import com.example.recipeapp.Recipe.Recipe
 import com.example.recipeapp.R
 import com.example.recipeapp.edit.EditActivity
 
@@ -108,7 +106,7 @@ private fun MyDivider() {
 }
 
 @Composable
-private fun DetailedViewBtns(viewModel: DetailedViewModel, offer: Offer, navController: NavController, isProgressVisible: MutableState<Boolean>, context: Context){
+private fun DetailedViewBtns(viewModel: DetailedViewModel, offer: Recipe, navController: NavController, isProgressVisible: MutableState<Boolean>, context: Context){
     Row(modifier = Modifier
         .fillMaxWidth()
         .height(100.dp)
