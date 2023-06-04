@@ -38,7 +38,7 @@ fun OffersList(
             .fillMaxWidth()
             .height(100.dp)
             .padding(vertical = 20.dp, horizontal = 16.dp),
-        text = stringResource(id = R.string.OffersFromCIEESponsor),
+        text = stringResource(id = R.string.navigation_offers_title),
         color = Color.Black,
         fontSize = 24.sp,
         fontWeight = FontWeight.Bold

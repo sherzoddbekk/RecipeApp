@@ -66,10 +66,11 @@ class MainActivity : ComponentActivity() {
                 })
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = colorResource(id = R.color.offer_list_bg)
                 ) {
                     val navController = rememberNavController()
                     Scaffold(
+                        backgroundColor = colorResource(id = R.color.white),
                         bottomBar = {
                             BottomNavigationBar(
                                 items = listOf(
